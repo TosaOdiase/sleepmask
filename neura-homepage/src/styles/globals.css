@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  @apply bg-ink text-white font-sans scroll-smooth;
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+a {
+  @apply text-gold underline hover:no-underline;
+}
+
+button {
+  @apply transition duration-200 ease-in-out;
+}
