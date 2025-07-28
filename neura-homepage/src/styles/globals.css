@@ -2,17 +2,142 @@
 @tailwind components;
 @tailwind utilities;
 
+/* CSS Reset - must come before Tailwind */
+*,
+*::before,
+*::after {
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+/* FORCE BACKGROUND COLOR - DEBUG VERSION */
+html {
+  background-color: #fdf6e3 !important; /* Papyrus yellow background */
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
+body {
+  background-color: #fdf6e3 !important; /* Papyrus yellow background */
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  overflow-x: hidden !important;
+}
+
+#__next {
+  background-color: #fdf6e3 !important; /* Papyrus yellow background */
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
+main {
+  background-color: #fdf6e3 !important; /* Papyrus yellow background */
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+}
+
+/* 1. Ensure root elements fill the viewport */
 html, body {
-  @apply bg-ink text-white font-sans scroll-smooth;
+  margin: 0 !important;
+  padding: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  background-color: #fdf6e3 !important; /* papyrus yellow */
+  overflow-x: hidden !important;
   font-family: "DM Sans", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
+  scroll-behavior: smooth;
+  scroll-padding-top: 0;
+  scroll-padding-bottom: 0;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: y proximity;
+}
+
+/* 2. Check if layout container is restricted in size */
+#root, .app, main, section, #__next, #__next > div, div[data-reactroot] {
+  width: 100% !important;
+  height: 100% !important;
+  background-color: #fdf6e3 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* 3. Remove unexpected gaps from containers */
+.container, .wrapper, .main {
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: #fdf6e3 !important;
+}
+
+/* 4. Check for scrollbars causing visual offset */
+body {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+/* 5. Inspect for unexpected white divs or pseudo-elements */
+div::before, div::after {
+  background-color: #fdf6e3 !important;
+}
+
+/* 6. Check background or drop-shadow artifacts */
+.mask-container, .intro-sleepmask-container, .sleepmask-section {
+  background: #fdf6e3 !important;
+  /* Remove any potential shadow artifacts */
+  box-shadow: none !important;
+  filter: none !important;
+}
+
+/* 7. Verify Next.js or framework wrappers aren't inserting global padding */
+#__next {
+  padding: 0 !important;
+  margin: 0 !important;
+  background-color: #fdf6e3 !important;
+}
+
+/* 8. Check for safe-area insets on mobile (iOS especially) */
+body {
+  padding-bottom: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  padding-top: 0 !important;
+}
+
+/* 9. Debug rogue fixed or absolute element */
+div {
+  /* outline: 1px solid red; */ /* Removed debug outlines */
+}
+
+/* 10. Use proper viewport units */
+html, body {
+  height: 100dvh !important; /* newer, dynamic viewport unit */
+  width: 100vw !important;
+}
+
+/* Ensure all divs and main elements have the background */
+div, main, section {
+  background-color: #fdf6e3 !important;
 }
 
 a {
-  @apply text-gold underline hover:no-underline;
+  color: #D4AF37;
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: none;
 }
 
 button {
-  @apply transition duration-200 ease-in-out;
+  transition: all 0.2s ease-in-out;
 }

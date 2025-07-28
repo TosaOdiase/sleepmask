@@ -2,8 +2,11 @@
     position: relative;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 1rem;
+    background-color: #fdf6e3; /* Papyrus yellow background */
 }
 
 .video-text {
@@ -14,6 +17,17 @@
     font-weight: 1500;
     line-height: 1;
     letter-spacing: 0.05em;
+}
+
+.hero-subtitle {
+    font-size: 2.5rem;
+    font-weight: 400;
+    font-style: italic;
+    color: #333;
+    text-align: center;
+    margin: 0;
+    line-height: 1.2;
+    letter-spacing: 0.02em;
 }
 
 .video-mask {
