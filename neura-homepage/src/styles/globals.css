@@ -6,138 +6,376 @@
 *,
 *::before,
 *::after {
-  margin: 0 !important;
-  padding: 0 !important;
-  box-sizing: border-box !important;
+  box-sizing: border-box;
 }
 
-/* FORCE BACKGROUND COLOR - DEBUG VERSION */
-html {
-  background-color: #fdf6e3 !important; /* Papyrus yellow background */
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
+/* Reset margins and padding for common elements */
+body, h1, h2, h3, h4, h5, h6, p, div, section, article, aside, nav, header, footer, main {
+  margin: 0;
+  padding: 0;
 }
 
-body {
-  background-color: #fdf6e3 !important; /* Papyrus yellow background */
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  overflow-x: hidden !important;
+/* Override reset for highlight elements */
+.highlight-animate,
+.highlight-animate-intro,
+.highlight-animate-summary,
+.highlight-animate-stats {
+  margin: 0 0.3rem 0.3rem 0.3rem !important;
+  padding: 0.1rem 0.4rem !important;
 }
 
-#__next {
-  background-color: #fdf6e3 !important; /* Papyrus yellow background */
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-}
-
-main {
-  background-color: #fdf6e3 !important; /* Papyrus yellow background */
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-}
-
-/* 1. Ensure root elements fill the viewport */
+/* Global background - navy blue to prevent white flash */
 html, body {
-  margin: 0 !important;
-  padding: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  background-color: #fdf6e3 !important; /* papyrus yellow */
-  overflow-x: hidden !important;
-  font-family: "DM Sans", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
+  background: #0D3147;
+  background-color: #0D3147;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  overflow-y: auto;
   scroll-behavior: smooth;
-  scroll-padding-top: 0;
-  scroll-padding-bottom: 0;
-  -webkit-overflow-scrolling: touch;
-  scroll-snap-type: y proximity;
+  margin: 0;
+  padding: 0;
+  /* Slow down scrolling */
+  scroll-behavior: smooth;
+  scroll-timeline: smooth;
 }
 
-/* 2. Check if layout container is restricted in size */
-#root, .app, main, section, #__next, #__next > div, div[data-reactroot] {
-  width: 100% !important;
-  height: 100% !important;
-  background-color: #fdf6e3 !important;
-  margin: 0 !important;
-  padding: 0 !important;
+/* Hide scrollbar for webkit browsers (Chrome, Safari, Edge) */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
 }
 
-/* 3. Remove unexpected gaps from containers */
-.container, .wrapper, .main {
-  margin: 0 !important;
-  padding: 0 !important;
-  background-color: #fdf6e3 !important;
+/* Hide scrollbar for Firefox */
+html {
+  scrollbar-width: none;
 }
 
-/* 4. Check for scrollbars causing visual offset */
-body {
-  overflow-x: hidden !important;
-  overflow-y: auto !important;
+/* Hide scrollbar for IE/Edge */
+html {
+  -ms-overflow-style: none;
 }
 
-/* 5. Inspect for unexpected white divs or pseudo-elements */
-div::before, div::after {
-  background-color: #fdf6e3 !important;
-}
-
-/* 6. Check background or drop-shadow artifacts */
-.mask-container, .intro-sleepmask-container, .sleepmask-section {
-  background: #fdf6e3 !important;
-  /* Remove any potential shadow artifacts */
-  box-shadow: none !important;
-  filter: none !important;
-}
-
-/* 7. Verify Next.js or framework wrappers aren't inserting global padding */
-#__next {
-  padding: 0 !important;
-  margin: 0 !important;
-  background-color: #fdf6e3 !important;
-}
-
-/* 8. Check for safe-area insets on mobile (iOS especially) */
-body {
-  padding-bottom: 0 !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  padding-top: 0 !important;
-}
-
-/* 9. Debug rogue fixed or absolute element */
-div {
-  /* outline: 1px solid red; */ /* Removed debug outlines */
-}
-
-/* 10. Use proper viewport units */
+/* Ensure content still scrolls but scrollbar is hidden */
 html, body {
-  height: 100dvh !important; /* newer, dynamic viewport unit */
-  width: 100vw !important;
+  -webkit-overflow-scrolling: touch;
 }
 
-/* Ensure all divs and main elements have the background */
-div, main, section {
-  background-color: #fdf6e3 !important;
+/* Hide scrollbar globally for all elements */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
 }
 
-a {
-  color: #D4AF37;
-  text-decoration: underline;
+*::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Edge */
 }
 
-a:hover {
-  text-decoration: none;
+/* Additional scrollbar hiding for specific elements */
+.hero, .intro-section, .sleepmask-section, .app-section, 
+.app-section-extended, .app-section-statistics, .coming-soon-section,
+.science-section, .science-4-panel-section, .science-summary-page-section,
+.blog-section, .team-section, .meet-the-team-section {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-button {
-  transition: all 0.2s ease-in-out;
+.hero::-webkit-scrollbar, .intro-section::-webkit-scrollbar, 
+.sleepmask-section::-webkit-scrollbar, .app-section::-webkit-scrollbar,
+.app-section-extended::-webkit-scrollbar, .app-section-statistics::-webkit-scrollbar,
+.coming-soon-section::-webkit-scrollbar, .science-section::-webkit-scrollbar,
+.science-4-panel-section::-webkit-scrollbar, .science-summary-page-section::-webkit-scrollbar,
+.blog-section::-webkit-scrollbar, .team-section::-webkit-scrollbar,
+.meet-the-team-section::-webkit-scrollbar {
+  display: none;
+}
+
+/* Horizontal scroll container styles */
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Smooth horizontal scrolling */
+.horizontal-scroll {
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Force body to start at top */
+body {
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+/* Prevent negative scroll positions */
+html {
+  scroll-padding-top: 0;
+  scroll-padding-left: 0;
+  scroll-padding-right: 0;
+  scroll-padding-bottom: 0;
+}
+
+/* Ensure first section starts at top */
+.hero:first-child {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* Prevent scrolling up beyond the top of the page */
+html {
+  scroll-padding-top: 0;
+}
+
+/* Ensure hero section is anchored at the top */
+.hero {
+  position: relative;
+  z-index: 1000;
+}
+
+/* Allow normal overscroll behavior */
+html, body {
+  overscroll-behavior: auto;
+}
+
+/* Remove any default white backgrounds from root elements */
+#__next, main, #root, .app {
+  background: transparent;
+  background-color: transparent;
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Highlight Animation Styles */
+.highlight-animate,
+.highlight-animate-intro,
+.highlight-animate-summary,
+.highlight-animate-stats {
+  position: relative;
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-origin: center;
+  display: inline-block;
+  line-height: 1.4;
+}
+
+.highlight-animate::before,
+.highlight-animate-intro::before,
+.highlight-animate-summary::before,
+.highlight-animate-stats::before {
+  content: '';
+  position: absolute;
+  top: -0.05rem;
+  left: -0.1rem;
+  right: -0.1rem;
+  bottom: -0.05rem;
+  background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+  border-radius: 6px;
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: -1;
+}
+
+.highlight-animate.in-view::before,
+.highlight-animate-intro.in-view::before,
+.highlight-animate-summary.in-view::before,
+.highlight-animate-stats.in-view::before {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.highlight-animate.in-view,
+.highlight-animate-intro.in-view,
+.highlight-animate-summary.in-view,
+.highlight-animate-stats.in-view {
+  transform: scale(1.05);
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  margin: 0 0.4rem 0.4rem 0.4rem !important;
+  padding: 0.15rem 0.6rem !important;
+  line-height: 1.6;
+}
+
+/* Coming Soon Underline Styles */
+.highlight-animate-coming-soon {
+  position: relative;
+  display: inline-block;
+  transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.highlight-animate-coming-soon::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #FFFFFF, #F4E4BC);
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-radius: 2px;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+}
+
+.highlight-animate-coming-soon.in-view::after {
+  width: 100%;
+}
+
+.highlight-animate-coming-soon.in-view {
+  transform: scale(1.02);
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+}
+
+/* Section-specific backgrounds - exactly matching the original component backgrounds */
+
+/* Hero section background - gradient from navy to light blue */
+.hero {
+  background: linear-gradient(180deg, #0D3147 0%, #065787 100%);
+}
+
+/* Intro section background - light blue */
+.intro-section {
+  background: #065787;
+}
+
+/* Sleepmask section background - light blue */
+.sleepmask-section {
+  background: #065787;
+}
+
+/* App section background - gradient from light blue to navy */
+.app-section {
+  background: linear-gradient(180deg, #065787 0%, #0D3147 100%);
+}
+
+/* App section extended background - navy blue */
+.app-section-extended {
+  background: #0D3147;
+}
+
+/* App section statistics background - navy blue */
+.app-section-statistics {
+  background: #0D3147;
+}
+
+/* Coming soon section background - navy blue */
+.coming-soon-section {
+  background: #0D3147;
+}
+
+/* Science section background - navy blue */
+.science-section {
+  background: #0D3147;
+}
+
+/* Science 4 panel section background - navy blue */
+.science-4-panel-section {
+  background: #0D3147;
+}
+
+/* Science summary page background - navy blue */
+.science-summary-page-section {
+  background: #0D3147;
+}
+
+/* Blog section background - navy blue */
+.blog-section {
+  background: #0D3147;
+}
+
+/* Team section background - light blue */
+.team-section {
+  background: #065787;
+}
+
+/* Meet the team section background - navy blue */
+.meet-the-team-section {
+  background: #0D3147;
+}
+
+/* Animated Underlines for Science Component */
+.highlighted-phrase {
+  position: relative;
+  display: inline-block;
+}
+
+.highlighted-phrase::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #F4E4BC, #E6D4A3);
+  transition: width 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  border-radius: 1px;
+  box-shadow: 0 0 8px rgba(244, 228, 188, 0.4);
+}
+
+.highlighted-phrase:hover::after {
+  width: 100%;
+}
+
+/* Animate underlines on scroll */
+.science-section .highlighted-phrase::after {
+  animation: slideInUnderline 0.3s ease-out;
+  animation-delay: calc(var(--phrase-index, 0) * 0.3s + 2.5s);
+  animation-fill-mode: forwards;
+}
+
+@keyframes slideInUnderline {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Page Transition Animation Styles */
+.rise-up-animation {
+  animation: riseUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes riseUp {
+  from {
+    opacity: 0;
+    transform: translateY(100px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Ensure sections are properly positioned for animations */
+#intro-section,
+#app-section,
+#science,
+#meet-the-team {
+  position: relative;
+  z-index: 1;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Page transition overlay styles */
+.page-transition-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 9999;
+  pointer-events: none;
+  transition: backdrop-filter 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }

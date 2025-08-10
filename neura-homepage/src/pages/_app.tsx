@@ -1,11 +1,11 @@
 // pages/_app.tsx
 import '@/styles/globals.css'
 import '../styles/hero.css';
-import '../styles/intropage.css';
 import '../styles/gradientFade.css';
-import '../styles/test.css'; // TEST CSS
+import '../styles/intro-combined.css';
 import type { AppProps } from 'next/app'
 import { DM_Sans } from 'next/font/google'
+import { useEffect } from 'react'
 
 const dmSans = DM_Sans({ 
   subsets: ['latin'],
@@ -14,9 +14,10 @@ const dmSans = DM_Sans({
 })
 
 export default function MyApp({ Component, pageProps }: AppProps) {
+
+
   return (
     <main className={dmSans.className} style={{ 
-      backgroundColor: '#fdf6e3', 
       margin: 0, 
       padding: 0, 
       minHeight: '100vh',

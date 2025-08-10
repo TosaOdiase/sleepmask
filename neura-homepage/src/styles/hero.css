@@ -1,12 +1,16 @@
 .hero {
     position: relative;
     height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1rem;
-    background-color: #fdf6e3; /* Papyrus yellow background */
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
 }
 
 .video-text {
