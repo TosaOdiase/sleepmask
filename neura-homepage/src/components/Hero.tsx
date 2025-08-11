@@ -142,11 +142,20 @@ const Hero: React.FC = () => {
       <h1 className="video-text">
         <video
           ref={videoRef}
-          src="/videos/ink-ripple.mp4"
-          loop
+          src="/videos/Blue Ink in Water 4k.mp4"
           muted
           playsInline
           className="video-mask"
+          onLoadedMetadata={() => {
+            if (videoRef.current) {
+              videoRef.current.currentTime = 119; // Start at 1:59 (119 seconds)
+            }
+          }}
+          onTimeUpdate={() => {
+            if (videoRef.current && videoRef.current.currentTime >= 135) { // 2:15 = 135 seconds
+              videoRef.current.currentTime = 119; // Reset to 1:59
+            }
+          }}
         />
         Neura
       </h1>

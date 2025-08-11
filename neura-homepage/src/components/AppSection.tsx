@@ -42,7 +42,7 @@ const AppSection: React.FC = () => {
           className="app-content"
           initial={{ opacity: 0, x: -50 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
           style={{
             textAlign: "left",
             maxWidth: "1000px"
@@ -61,7 +61,7 @@ const AppSection: React.FC = () => {
               y: 50
             }}
             transition={{ 
-              duration: 0.6, 
+              duration: 0.4, 
               ease: "easeOut"
             }}
             style={{ display: "flex", flexDirection: "column", gap: "10px" }}
@@ -114,7 +114,7 @@ const AppSection: React.FC = () => {
           y: 50
         }}
         transition={{ 
-          duration: 0.6, 
+          duration: 0.4, 
           ease: "easeOut"
         }}
         style={{

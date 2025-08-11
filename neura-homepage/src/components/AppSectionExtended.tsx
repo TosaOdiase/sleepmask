@@ -24,7 +24,7 @@ const AppSectionExtended: React.FC = () => {
 
   useEffect(() => {
     // Wait for the text container to be visible first
-    const textContainer = document.querySelector('.text-container');
+    const textContainer = document.querySelector('.text-container-extended');
     if (!textContainer) return;
 
     const textObserver = new IntersectionObserver(
@@ -32,17 +32,17 @@ const AppSectionExtended: React.FC = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             // Text is visible, now trigger highlights with delay
-            const highlightElements = document.querySelectorAll('.highlight-animate');
+            const highlightElements = document.querySelectorAll('.highlight-animate-extended');
             highlightElements.forEach((el, index) => {
               // Remove existing class first to reset animation
               el.classList.remove('in-view');
               setTimeout(() => {
                 el.classList.add('in-view');
-              }, 1000 + (index * 300));
+              }, 600 + (index * 200));
             });
           } else {
             // When exiting view, remove the class to reset for next time
-            const highlightElements = document.querySelectorAll('.highlight-animate');
+            const highlightElements = document.querySelectorAll('.highlight-animate-extended');
             highlightElements.forEach((el) => {
               el.classList.remove('in-view');
             });
@@ -86,9 +86,9 @@ const AppSectionExtended: React.FC = () => {
         }}
         viewport={{ once: false, margin: "50px 0px -50px 0px", amount: 0.3 }}
         transition={{ 
-          duration: 1.5, 
+          duration: 1.0, 
           ease: [0.25, 0.46, 0.45, 0.94],
-          delay: 0.2
+          delay: 0.1
         }}
         style={{
           position: "absolute",
@@ -114,7 +114,7 @@ const AppSectionExtended: React.FC = () => {
 
       {/* Right side - Text content */}
       <motion.div 
-        className="text-container"
+        className="text-container-extended"
         initial={{ 
           opacity: 0, 
           x: 50,
@@ -127,9 +127,9 @@ const AppSectionExtended: React.FC = () => {
         }}
         viewport={{ once: false, margin: "50px 0px -50px 0px", amount: 0.3 }}
         transition={{ 
-          duration: 1.5, 
+          duration: 1.0, 
           ease: [0.25, 0.46, 0.45, 0.94],
-          delay: 0.4
+          delay: 0.2
         }}
         style={{
           position: "absolute",
@@ -151,7 +151,7 @@ const AppSectionExtended: React.FC = () => {
         >
           Set your preferred{" "}
           <span 
-            className="highlight-animate"
+            className="highlight-animate-extended"
             style={{
               display: "inline-block",
               position: "relative",
@@ -164,7 +164,7 @@ const AppSectionExtended: React.FC = () => {
           </span>
           , and we will choose the{" "}
           <span 
-            className="highlight-animate"
+            className="highlight-animate-extended"
             style={{
               display: "inline-block",
               position: "relative",
@@ -178,7 +178,7 @@ const AppSectionExtended: React.FC = () => {
           </span>
           {" "}based on your{" "}
           <span 
-            className="highlight-animate"
+            className="highlight-animate-extended"
             style={{
               display: "inline-block",
               position: "relative",
@@ -210,7 +210,7 @@ const AppSectionExtended: React.FC = () => {
         >
           You can also view your personalized{" "}
           <span 
-            className="highlight-animate"
+            className="highlight-animate-extended"
             style={{
               display: "inline-block",
               position: "relative",

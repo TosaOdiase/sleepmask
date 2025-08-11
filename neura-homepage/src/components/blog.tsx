@@ -65,17 +65,21 @@ const ArticleCard: React.FC<{ article: any; index: number }> = ({ article, index
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 0.6, delay: index * 0.1 }}
+      transition={{ 
+        duration: 0.6, 
+        delay: index * 0.1,
+        ease: "easeOut",
+        y: { duration: 0.2, ease: "easeOut" }
+      }}
       style={{
         backgroundColor: "#0D3147",
         borderRadius: "12px",
         overflow: "hidden",
         boxShadow: "0 8px 24px rgba(0, 0, 0, 0.15)",
-        transition: "transform 0.3s ease, box-shadow 0.3s ease",
         cursor: "pointer"
       }}
       whileHover={{ 
-        transform: "translateY(-8px)",
+        y: -8,
         boxShadow: "0 16px 40px rgba(0, 0, 0, 0.25)"
       }}
       onClick={() => window.open(article.link, '_blank')}
@@ -103,7 +107,11 @@ const ArticleCard: React.FC<{ article: any; index: number }> = ({ article, index
 
       {/* Content */}
       <div style={{
-        padding: "1.5rem"
+        padding: "1.5rem",
+        height: "200px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between"
       }}>
         {/* Author Header */}
         <div style={{
@@ -128,11 +136,12 @@ const ArticleCard: React.FC<{ article: any; index: number }> = ({ article, index
           fontWeight: "700",
           lineHeight: "1.4",
           margin: "0 0 1rem 0",
-          minHeight: "3.5rem",
+          height: "3.5rem",
           display: "-webkit-box",
           WebkitLineClamp: 2,
           WebkitBoxOrient: "vertical",
-          overflow: "hidden"
+          overflow: "hidden",
+          textOverflow: "ellipsis"
         }}>
           {article.title}
         </h3>
@@ -181,8 +190,7 @@ const Blog: React.FC = () => {
         backgroundColor: "#0D3147",
         color: "#ffffff",
         margin: 0,
-        padding: "4rem 2rem",
-        fontFamily: "'Roboto', sans-serif"
+        padding: "4rem 2rem"
       }}
     >
       {/* Header */}

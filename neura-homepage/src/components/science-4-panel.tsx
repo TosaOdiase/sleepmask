@@ -24,16 +24,7 @@ const Science4Panel: React.FC = () => {
     }
   }, [hasScrolledThroughSection]);
 
-  // Debug: Log isInView changes
-  useEffect(() => {
-    console.log('isInView changed to:', isInView);
-    if (containerRef.current) {
-      const rect = containerRef.current.getBoundingClientRect();
-      console.log('Container bounds:', rect);
-      console.log('Window height:', window.innerHeight);
-      console.log('Is visible:', rect.top < window.innerHeight && rect.bottom > 0);
-    }
-  }, [isInView]);
+
 
   // Scroll sensitivity and steps
   const SENSOR_COUNT = 4;
@@ -64,11 +55,8 @@ const Science4Panel: React.FC = () => {
 
   // Handle horizontal scroll only when section is in view
   useEffect(() => {
-    console.log('Section in view:', isInView); // Debug log
-    
     // Don't add event listeners if section is not in view or animation is complete
     if (!isInView || scrollPosition >= MAX_SCROLL_POSITION) {
-      console.log('Section not in view or animation complete - no event listeners added');
       return;
     }
 
@@ -76,28 +64,36 @@ const Science4Panel: React.FC = () => {
     let scrollTimeout: NodeJS.Timeout;
 
     const handleWheel = (e: WheelEvent) => {
+      // Check if we're actually on the 4-panel section (lower part)
+      if (!containerRef.current) return;
+      
+      const rect = containerRef.current.getBoundingClientRect();
+      const sectionHeight = rect.height;
+      const viewportHeight = window.innerHeight;
+      
+      // Only apply scroll rules when the section is more prominently in view (lower part)
+      // This means the top of the section should be in the lower third of the viewport
+      const isOnSection = rect.top < viewportHeight * 0.2 && rect.bottom > viewportHeight * 0.2;
+      
+      // If we're not on the section, don't interfere with scrolling at all
+      if (!isOnSection) {
+        return;
+      }
+      
       // Once animation is complete (100%), don't interfere with scrolling at all
       if (scrollPosition >= MAX_SCROLL_POSITION) {
-        console.log('Animation complete - no interference with normal website scrolling');
         setHasScrolledThroughSection(true);
         localStorage.setItem('hasScrolledThroughSection', 'true');
         return; // Don't prevent default, let browser handle normal scrolling
       }
       
-      // Only handle horizontal scrolling when this section is in view and animation is not complete
-      if (!isInView) return;
-      
-      console.log('Wheel event detected:', e.deltaY, 'scrollPosition:', scrollPosition); // Debug log
-      
       // If we're at the top and can scroll up, allow default scroll behavior for previous page navigation
       if (scrollPosition <= 0 && e.deltaY < 0 && hasScrolledThroughSection) {
-        console.log('At 0% - allowing previous page navigation');
         return; // Allow default behavior to scroll to the previous page
       }
 
       // Handle reverse scrolling when we're at the start but haven't been through the section yet
       if (scrollPosition <= 0 && e.deltaY < 0 && !hasScrolledThroughSection) {
-        console.log('At 0% - forcing horizontal scroll within section, moving to:', MAX_SCROLL_POSITION);
         e.preventDefault();
         e.stopPropagation();
         setScrollPosition(MAX_SCROLL_POSITION); // Force horizontal scroll
@@ -116,18 +112,14 @@ const Science4Panel: React.FC = () => {
       if (scrollPosition > 0) {
         setHasScrolledThroughSection(true);
         localStorage.setItem('hasScrolledThroughSection', 'true');
-        console.log('Marked hasScrolledThroughSection as true - scrollPosition:', scrollPosition);
       }
 
       // Translate vertical scroll to horizontal sensor movement
       const scrollDirection = e.deltaY > 0 ? 1 : -1;
 
-      console.log('Scroll details - deltaY:', e.deltaY, 'scrollDirection:', scrollDirection, 'scrollStep:', scrollStep);
-
       // Use functional update to get current scrollPosition value
       setScrollPosition(prevPosition => {
         const newPosition = Math.max(0, Math.min(MAX_SCROLL_POSITION, prevPosition + (scrollDirection * scrollStep)));
-        console.log('Scroll direction:', scrollDirection, 'Current position:', prevPosition, 'New position:', newPosition, 'Change:', scrollDirection * scrollStep);
         // Ensure we never exceed MAX_SCROLL_POSITION to stop animations at 100%
         return Math.min(newPosition, MAX_SCROLL_POSITION);
       });
@@ -140,28 +132,36 @@ const Science4Panel: React.FC = () => {
     };
 
     const handleTouchMove = (e: TouchEvent) => {
+      // Check if we're actually on the 4-panel section (lower part)
+      if (!containerRef.current) return;
+      
+      const rect = containerRef.current.getBoundingClientRect();
+      const sectionHeight = rect.height;
+      const viewportHeight = window.innerHeight;
+      
+      // Only apply scroll rules when the section is more prominently in view (lower part)
+      // This means the top of the section should be in the lower third of the viewport
+      const isOnSection = rect.top < viewportHeight * 0.3 && rect.bottom > viewportHeight * 0.2;
+      
+      // If we're not on the section, don't interfere with scrolling at all
+      if (!isOnSection) {
+        return;
+      }
+      
       // Once animation is complete (100%), don't interfere with scrolling at all
       if (scrollPosition >= MAX_SCROLL_POSITION) {
-        console.log('Animation complete - no interference with normal website touch scrolling');
         setHasScrolledThroughSection(true);
         localStorage.setItem('hasScrolledThroughSection', 'true');
         return; // Don't prevent default, let browser handle normal scrolling
       }
       
-      // Only handle touch scrolling when this section is in view and animation is not complete
-      if (!isInView) return;
-      
-      console.log('Touch event detected, scrollPosition:', scrollPosition); // Debug log
-      
       // If we're at the top and can scroll up, allow default scroll behavior for previous page navigation
       if (scrollPosition <= 0 && hasScrolledThroughSection) {
-        console.log('At 0% - allowing touch previous page navigation');
         return; // Allow default behavior to scroll to the previous page
       }
 
       // Handle reverse scrolling when we're at the start but haven't been through the section yet
       if (scrollPosition <= 0 && !hasScrolledThroughSection) {
-        console.log('At 0% - forcing horizontal touch scroll within section');
         e.preventDefault();
         e.stopPropagation();
         setScrollPosition(MAX_SCROLL_POSITION); // Force horizontal scroll
@@ -199,14 +199,11 @@ const Science4Panel: React.FC = () => {
     // Add event listeners with capture to ensure they're handled first
     document.addEventListener('wheel', handleWheel, { passive: false, capture: true });
     document.addEventListener('touchmove', handleTouchMove, { passive: false, capture: true });
-    
-    console.log('Event listeners added'); // Debug log
 
     return () => {
       document.removeEventListener('wheel', handleWheel, { capture: true });
       document.removeEventListener('touchmove', handleTouchMove, { capture: true });
       clearTimeout(scrollTimeout);
-      console.log('Event listeners removed'); // Debug log
     };
   }, [isInView, scrollPosition]); // Added scrollPosition back to dependencies to react to completion
 
@@ -445,45 +442,7 @@ const Science4Panel: React.FC = () => {
         
 
         
-        {/* Page Navigation Indicators */}
-        {scrollPosition <= 0 && !hasScrolledThroughSection && (
-          <div style={{
-            textAlign: "center",
-            marginTop: "0.5rem",
-            color: "#FF6B6B",
-            fontSize: "0.8rem",
-            opacity: 0.9,
-            fontWeight: "bold"
-          }}>
-            ⬆️ Scroll up to navigate through sensors in reverse
-          </div>
-        )}
-        
-        {scrollPosition <= 0 && hasScrolledThroughSection && (
-          <div style={{
-            textAlign: "center",
-            marginTop: "0.5rem",
-            color: "#FFD700",
-            fontSize: "0.8rem",
-            opacity: 0.9,
-            fontWeight: "bold"
-          }}>
-            ⬆️ Scroll up to go to previous page
-          </div>
-        )}
-        
-        {scrollPosition <= 0 && !hasScrolledThroughSection && (
-          <div style={{
-            textAlign: "center",
-            marginTop: "0.5rem",
-            color: "#FF6B6B",
-            fontSize: "0.8rem",
-            opacity: 0.9,
-            fontWeight: "bold"
-          }}>
-            ⬆️ Scroll up to navigate through sensors in reverse
-          </div>
-        )}
+
         
 
         

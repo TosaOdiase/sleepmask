@@ -37,7 +37,7 @@ const ScienceSummaryPage: React.FC = () => {
               el.classList.remove('in-view');
               setTimeout(() => {
                 el.classList.add('in-view');
-              }, 1000 + (index * 300));
+              }, 500 + (index * 150));
             });
           } else {
             // When exiting view, remove the class to reset for next time
@@ -77,10 +77,7 @@ const ScienceSummaryPage: React.FC = () => {
       }}
     >
       {/* Main Content Container */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-        transition={{ duration: 1.5, delay: 1.0 }}
+      <div
         style={{
           display: "flex",
           flexDirection: "column",
@@ -110,7 +107,7 @@ const ScienceSummaryPage: React.FC = () => {
           className="text-container"
           initial={{ opacity: 0, filter: "blur(8px)" }}
           animate={isInView ? { opacity: 1, filter: "blur(0px)" } : { opacity: 0, filter: "blur(8px)" }}
-          transition={{ duration: 1, delay: 1 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
           style={{
             fontSize: "1.8rem",
             lineHeight: "1.6",
@@ -138,13 +135,13 @@ const ScienceSummaryPage: React.FC = () => {
           <motion.span
             initial={{ opacity: 0, scale: 0.8, rotateX: 90, filter: "blur(4px)", y: 50 }}
             animate={isInView ? { opacity: 1, scale: 1, rotateX: 0, filter: "blur(0px)", y: 0 } : { opacity: 0, scale: 0.8, rotateX: 90, filter: "blur(4px)", y: 50 }}
-            transition={{ duration: 0.8, delay: 1.5 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
             style={{ color: "#F4E4BC", fontWeight: "bold", fontSize: "2.2rem", textShadow: "3px 3px 6px rgba(0,0,0,0.4)" }}
           >
             feel alert, not groggy.
           </motion.span>
         </motion.p>
-      </motion.div>
+      </div>
     </section>
   );
 };

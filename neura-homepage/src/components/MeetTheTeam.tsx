@@ -14,22 +14,22 @@ const founders = [
     title: "Co-Founder",
     image: "/images/Artem Zabarov.png",
     description: "Art is a Computer Science student at CWRU. An expert in AI, he is the team's computer and ML wiz. Art is a Co-Founder of Neura and is leading the AI and Software team. He enjoys learning new things, spending time with his friends, and rap music."
-  },
-  {
-    name: "Ian Norfolk",
-    title: "Co-Founder",
-    image: "/images/Ian Norfolk .png",
-    description: "Ian is a Mechanical Engineering student at CWRU. He has worked as a technician in the largest university makerspace in the U.S. Ian is a Co-Founder of Neura, where he is responsible for the design of the product and compliance with legal requirements throughout all stages of development. He enjoys skiing, playing the drums, and stargazing."
-  },
-  {
-    name: "Kyle Porter",
-    title: "Co-Founder",
-    image: "/images/Kyle Porter.png",
-    description: "Kyle is an Aerospace Engineer at CWRU. Detail-oriented and driven engineer, Kyle is a Co-Founder of Neura and is leading the prototype and circuit development teams. Kyle loves tinkering and making - from wind tunnels to 3D printers. His favorite things are hiking, teaching, and flying planes."
   }
 ];
 
 const coreTeam = [
+  {
+    name: "Ian Norfolk",
+    title: "Mechanical Engineer",
+    image: "/images/Ian Norfolk .png",
+    description: "Ian is a Mechanical Engineering student at CWRU. He has worked as a technician in the largest university makerspace in the U.S. Ian is responsible for the design of the product and compliance with legal requirements throughout all stages of development. He enjoys skiing, playing the drums, and stargazing."
+  },
+  {
+    name: "Kyle Porter",
+    title: "Aerospace Engineer",
+    image: "/images/Kyle Porter.png",
+    description: "Kyle is an Aerospace Engineer at CWRU. Detail-oriented and driven engineer, Kyle is leading the prototype and circuit development teams. Kyle loves tinkering and making - from wind tunnels to 3D printers. His favorite things are hiking, teaching, and flying planes."
+  },
   {
     name: "Daria Schwetsova",
     title: "Lead Neuroscience Researcher",

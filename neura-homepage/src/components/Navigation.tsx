@@ -382,11 +382,16 @@ const Navigation = () => {
                     document.body.classList.add('blurred');
                   }, 50);
                   
-                  // After blur animation, scroll to app section instantly
+                  // After blur animation, navigate to home page and scroll to app section
                   setTimeout(() => {
-                    const appSection = document.getElementById('app-section');
-                    if (appSection) {
-                      appSection.scrollIntoView({ behavior: 'auto' });
+                    if (isOnBlogPage) {
+                      // Navigate to home page with hash to indicate we want to scroll to app section
+                      window.location.href = '/#app';
+                    } else {
+                      const appSection = document.getElementById('app-section');
+                      if (appSection) {
+                        appSection.scrollIntoView({ behavior: 'auto' });
+                      }
                     }
                     
                     // Start menu lift and blur reduction
@@ -454,11 +459,16 @@ const Navigation = () => {
                     document.body.classList.add('blurred');
                   }, 50);
                   
-                  // After blur animation, scroll to science section instantly
+                  // After blur animation, navigate to home page and scroll to science section
                   setTimeout(() => {
-                    const scienceSection = document.getElementById('science');
-                    if (scienceSection) {
-                      scienceSection.scrollIntoView({ behavior: 'auto' });
+                    if (isOnBlogPage) {
+                      // Navigate to home page with hash to indicate we want to scroll to science section
+                      window.location.href = '/#science';
+                    } else {
+                      const scienceSection = document.getElementById('science');
+                      if (scienceSection) {
+                        scienceSection.scrollIntoView({ behavior: 'auto' });
+                      }
                     }
                     
                     // Start menu lift and blur reduction
@@ -526,11 +536,16 @@ const Navigation = () => {
                     document.body.classList.add('blurred');
                   }, 50);
                   
-                  // After blur animation, scroll to team section instantly
+                  // After blur animation, navigate to home page and scroll to team section
                   setTimeout(() => {
-                    const teamSection = document.getElementById('meet-the-team');
-                    if (teamSection) {
-                      teamSection.scrollIntoView({ behavior: 'auto' });
+                    if (isOnBlogPage) {
+                      // Navigate to home page with hash to indicate we want to scroll to team section
+                      window.location.href = '/#team';
+                    } else {
+                      const teamSection = document.getElementById('meet-the-team');
+                      if (teamSection) {
+                        teamSection.scrollIntoView({ behavior: 'auto' });
+                      }
                     }
                     
                     // Start menu lift and blur reduction

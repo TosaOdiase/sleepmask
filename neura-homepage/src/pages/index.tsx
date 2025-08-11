@@ -34,11 +34,31 @@ export default function Home() {
     backgroundManager.registerSection('intro', introSection, SECTION_BACKGROUNDS.intro);
     backgroundManager.registerSection('app', appSection, SECTION_BACKGROUNDS['app-extended']);
 
-    // Check if we have a hash in the URL and scroll to intro section if needed
-    if (window.location.hash === '#intro') {
+    // Check if we have a hash in the URL and scroll to the appropriate section
+    if (window.location.hash) {
       // Small delay to ensure the page is fully loaded
       setTimeout(() => {
-        introSection.scrollIntoView({ behavior: 'auto' });
+        const hash = window.location.hash.substring(1); // Remove the #
+        
+        if (hash === 'intro') {
+          introSection.scrollIntoView({ behavior: 'auto' });
+        } else if (hash === 'app') {
+          const appSection = document.getElementById('app-section');
+          if (appSection) {
+            appSection.scrollIntoView({ behavior: 'auto' });
+          }
+        } else if (hash === 'science') {
+          const scienceSection = document.getElementById('science');
+          if (scienceSection) {
+            scienceSection.scrollIntoView({ behavior: 'auto' });
+          }
+        } else if (hash === 'team') {
+          const teamSection = document.getElementById('meet-the-team');
+          if (teamSection) {
+            teamSection.scrollIntoView({ behavior: 'auto' });
+          }
+        }
+        
         // Clear the hash from the URL
         window.history.replaceState(null, '', window.location.pathname);
       }, 100);
