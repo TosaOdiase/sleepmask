@@ -92,7 +92,7 @@ const AppSectionExtended: React.FC = () => {
         }}
         style={{
           position: "absolute",
-          top: "30%",
+          top: "15%",
           left: "15%",
           transform: "translateY(-50%)",
           width: "350px",
@@ -133,7 +133,7 @@ const AppSectionExtended: React.FC = () => {
         }}
         style={{
           position: "absolute",
-          top: "50%",
+          top: "35%",
           right: "5%",
           transform: "translateY(-50%)",
           maxWidth: "700px",

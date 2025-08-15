@@ -129,8 +129,8 @@ const AppSection: React.FC = () => {
         }}
       >
         <img 
-          src="/images/neura-app-stats-page.png" 
-          alt="Neura Sleep Statistics Page"
+          src="/images/neura-app-mask-page.png" 
+          alt="Neura Sleep Mask Settings Page"
           style={{
             width: "100%",
             height: "100%",
