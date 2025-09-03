@@ -15,7 +15,7 @@ const IntroSection = () => {
         alignItems: "center",
         width: "100%",
         position: "absolute",
-        top: "2rem",
+        top: "8rem",
         zIndex: 10
       }}>
         <motion.div
@@ -69,7 +69,7 @@ const IntroSection = () => {
           maxWidth: '1600px',
           padding: '0 4rem',
           position: 'relative',
-          marginTop: '8rem'
+          marginTop: '16rem'
         }}
       >
         {/* Left: SVG */}

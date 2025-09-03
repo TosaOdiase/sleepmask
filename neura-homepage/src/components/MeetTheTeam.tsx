@@ -114,8 +114,8 @@ const MeetTheTeam: React.FC = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
-        padding: "5vh 5rem"
+        justifyContent: "flex-start",
+        padding: "15vh 5rem 5vh 5rem"
       }}
     >
       {/* Fixed Header */}
@@ -125,7 +125,8 @@ const MeetTheTeam: React.FC = () => {
         transition={{ duration: 0.8, ease: 'easeOut' }}
         style={{
           textAlign: "center",
-          marginBottom: "2rem",
+          marginBottom: "4rem",
+          marginTop: "2rem",
           position: "relative",
           zIndex: 10
         }}

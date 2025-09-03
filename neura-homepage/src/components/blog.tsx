@@ -190,7 +190,7 @@ const Blog: React.FC = () => {
         backgroundColor: "#0D3147",
         color: "#ffffff",
         margin: 0,
-        padding: "4rem 2rem"
+        padding: "5rem 2rem 4rem 2rem"
       }}
     >
       {/* Header */}

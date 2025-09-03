@@ -119,7 +119,7 @@ const AppSection: React.FC = () => {
         }}
         style={{
           position: "absolute",
-          top: "5%", // Moved up from 15% to 5%
+          top: "8%", // Moved down from 5% to 25%
           right: "-2%",
           transform: "translateY(-50%)",
           width: "393px",
