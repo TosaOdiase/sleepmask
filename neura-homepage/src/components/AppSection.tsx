@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
 
 const AppSection: React.FC = () => {
@@ -17,7 +17,6 @@ const AppSection: React.FC = () => {
   // CSS gradient from lighter blue to navy blue
 
 
-
   return (
     <section 
       ref={containerRef}
@@ -33,7 +32,7 @@ const AppSection: React.FC = () => {
       <div 
         style={{
           position: "absolute",
-          top: "40%", // Moved up from 60% to 40%
+          top: "35%", // Moved higher from 50% to 35%
           left: "10%",
           transform: "translateY(-50%)"
         }}
@@ -48,6 +47,38 @@ const AppSection: React.FC = () => {
             maxWidth: "1000px"
           }}
         >
+          {/* Introducing text */}
+          <motion.div
+            initial={{ 
+              opacity: 0, 
+              y: 30
+            }}
+            animate={isInView ? { 
+              opacity: 1, 
+              y: 0
+            } : { 
+              opacity: 0, 
+              y: 30
+            }}
+            transition={{ 
+              duration: 0.4, 
+              ease: "easeOut",
+              delay: 0.1
+            }}
+            style={{
+              fontSize: "2rem",
+              fontWeight: "600",
+              margin: "0 0 1rem 0",
+              lineHeight: "1.2",
+              color: "#FFFFFF",
+              textShadow: "2px 2px 8px rgba(0,0,0,0.6), 4px 4px 12px rgba(0,0,0,0.4)",
+              background: "transparent",
+              transformStyle: "preserve-3d"
+            }}
+          >
+            Introducing
+          </motion.div>
+
           <motion.div
             initial={{ 
               opacity: 0, 
@@ -62,7 +93,8 @@ const AppSection: React.FC = () => {
             }}
             transition={{ 
               duration: 0.4, 
-              ease: "easeOut"
+              ease: "easeOut",
+              delay: 0.2
             }}
             style={{ display: "flex", flexDirection: "column", gap: "10px" }}
           >
@@ -73,12 +105,12 @@ const AppSection: React.FC = () => {
                 margin: "0 !important",
                 lineHeight: "1.2",
                 color: "#F4E4BC",
-                textShadow: "2px 2px 4px rgba(0,0,0,0.3)",
+                textShadow: "2px 2px 8px rgba(0,0,0,0.6), 4px 4px 12px rgba(0,0,0,0.4)",
                 background: "transparent",
                 transformStyle: "preserve-3d"
               }}
             >
-              Neura
+              &nbsp;&nbsp;Neura
             </div>
             
             <div
@@ -88,13 +120,13 @@ const AppSection: React.FC = () => {
                 margin: "0 !important",
                 lineHeight: "1.2",
                 color: "#F4E4BC",
-                textShadow: "2px 2px 4px rgba(0,0,0,0.3)",
+                textShadow: "2px 2px 8px rgba(0,0,0,0.6), 4px 4px 12px rgba(0,0,0,0.4)",
                 paddingLeft: "60px",
                 background: "transparent",
                 transformStyle: "preserve-3d"
               }}
             >
-              &nbsp;&nbsp;Sleep <span style={{ color: "#FFFFFF" }}>v2</span>
+              &nbsp;&nbsp;&nbsp;&nbsp;Sleep
             </div>
           </motion.div>
         </motion.div>

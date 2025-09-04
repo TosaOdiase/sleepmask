@@ -72,7 +72,7 @@ const ArticleCard: React.FC<{ article: any; index: number }> = ({ article, index
         y: { duration: 0.2, ease: "easeOut" }
       }}
       style={{
-        backgroundColor: "#0D3147",
+        backgroundColor: "#253F4A",
         borderRadius: "12px",
         overflow: "hidden",
         boxShadow: "0 8px 24px rgba(0, 0, 0, 0.15)",
@@ -187,7 +187,7 @@ const Blog: React.FC = () => {
         minHeight: "100vh",
         width: "100%",
         position: "relative",
-        backgroundColor: "#0D3147",
+        backgroundColor: "#253F4A",
         color: "#ffffff",
         margin: 0,
         padding: "5rem 2rem 4rem 2rem"

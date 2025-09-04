@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 const Navigation = () => {
   const [isPageTransitioning, setIsPageTransitioning] = useState(false);
+  const [isContactDropdownOpen, setIsContactDropdownOpen] = useState(false);
   
   // Check if we're on the blog page
   const isOnBlogPage = typeof window !== 'undefined' && window.location.pathname === '/blog';
@@ -14,6 +15,21 @@ const Navigation = () => {
       document.body.classList.remove('transitioning', 'blurred');
     };
   }, []);
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isContactDropdownOpen) {
+        const target = event.target as Element;
+        if (!target.closest('[data-contact-dropdown]')) {
+          setIsContactDropdownOpen(false);
+        }
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isContactDropdownOpen]);
 
   return (
     <>
@@ -41,7 +57,7 @@ const Navigation = () => {
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.3);
+            background: #253F4A;
             z-index: 9997;
             pointer-events: none;
             transition: backdrop-filter 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -51,6 +67,7 @@ const Navigation = () => {
           body.transitioning {
             filter: blur(0px);
             transition: filter 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            overflow: hidden;
           }
           
           body.transitioning.blurred {
@@ -102,53 +119,53 @@ const Navigation = () => {
             transition={{ duration: 0.2 }}
           >
             NEURA
-          </motion.div>
+            </motion.div>
 
           {/* Menu Items */}
-          <div style={{
-            display: 'flex',
-            gap: '2rem',
+            <div style={{
+              display: 'flex',
+            gap: '1.5rem',
             alignItems: 'center'
           }}>
                         <motion.button
               onClick={() => {
                 // Start blur effect
-                setIsPageTransitioning(true);
-                document.body.classList.add('transitioning');
-                
-                // Apply blur to background content
-                setTimeout(() => {
-                  document.body.classList.add('blurred');
-                }, 50);
-                
-                // After blur animation, navigate to home page and scroll to intro section
-                setTimeout(() => {
-                  if (isOnBlogPage) {
-                    window.location.href = '/#intro';
-                  } else {
-                    const introSection = document.querySelector('.intro-section');
-                    if (introSection) {
-                      introSection.scrollIntoView({ behavior: 'auto' });
-                    }
-                  }
+                  setIsPageTransitioning(true);
+                  document.body.classList.add('transitioning');
                   
-                  // Remove blur and close transition
+                  // Apply blur to background content
                   setTimeout(() => {
-                    document.body.classList.remove('blurred');
-                    setIsPageTransitioning(false);
-                    document.body.classList.remove('transitioning');
-                  }, 800);
-                }, 800);
+                    document.body.classList.add('blurred');
+                  }, 50);
+                  
+                  // After blur animation, navigate to home page and scroll to intro section
+                  setTimeout(() => {
+                    if (isOnBlogPage) {
+                      window.location.href = '/#intro';
+                    } else {
+                      const introSection = document.querySelector('.intro-section');
+                      if (introSection) {
+                        introSection.scrollIntoView({ behavior: 'auto' });
+                      }
+                    }
+                    
+                  // Remove blur and close transition
+                    setTimeout(() => {
+                      document.body.classList.remove('blurred');
+                        setIsPageTransitioning(false);
+                        document.body.classList.remove('transitioning');
+                  }, 400);
+                }, 400);
               }}
               style={{
-                background: 'transparent',
-                border: 'none',
-                cursor: 'pointer',
+                  background: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
                 fontSize: '1rem',
                 fontWeight: '600',
                 color: '#1a1a1a', // Darker color
-                textDecoration: 'none',
-                textTransform: 'uppercase',
+                  textDecoration: 'none',
+                  textTransform: 'uppercase',
                 letterSpacing: '1px',
                 transition: 'all 0.3s ease',
                 padding: '0.5rem 1rem',
@@ -156,8 +173,13 @@ const Navigation = () => {
               }}
               whileHover={{ 
                 scale: 1.05,
-                background: 'rgba(255,255,255,0.1)',
-                color: '#FFFFFF'
+                background: 'rgba(255,255,255,0.1)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.textDecoration = 'underline';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.textDecoration = 'none';
               }}
               transition={{ duration: 0.2 }}
             >
@@ -166,39 +188,39 @@ const Navigation = () => {
 
             <motion.button
               onClick={() => {
-                setIsPageTransitioning(true);
-                document.body.classList.add('transitioning');
-                
-                setTimeout(() => {
-                  document.body.classList.add('blurred');
-                }, 50);
-                
-                setTimeout(() => {
-                  if (isOnBlogPage) {
-                    window.location.href = '/#app';
-                  } else {
-                    const appSection = document.getElementById('app-section');
-                    if (appSection) {
-                      appSection.scrollIntoView({ behavior: 'auto' });
-                    }
-                  }
+                  setIsPageTransitioning(true);
+                  document.body.classList.add('transitioning');
                   
                   setTimeout(() => {
-                    document.body.classList.remove('blurred');
-                    setIsPageTransitioning(false);
-                    document.body.classList.remove('transitioning');
-                  }, 800);
-                }, 800);
+                    document.body.classList.add('blurred');
+                  }, 50);
+                  
+                  setTimeout(() => {
+                    if (isOnBlogPage) {
+                      window.location.href = '/#app';
+                    } else {
+                      const appSection = document.getElementById('app-section');
+                      if (appSection) {
+                        appSection.scrollIntoView({ behavior: 'auto' });
+                      }
+                    }
+                    
+                    setTimeout(() => {
+                      document.body.classList.remove('blurred');
+                        setIsPageTransitioning(false);
+                        document.body.classList.remove('transitioning');
+                  }, 400);
+                }, 400);
               }}
               style={{
-                background: 'transparent',
-                border: 'none',
-                cursor: 'pointer',
+                  background: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
                 fontSize: '1rem',
                 fontWeight: '600',
                 color: '#1a1a1a',
-                textDecoration: 'none',
-                textTransform: 'uppercase',
+                  textDecoration: 'none',
+                  textTransform: 'uppercase',
                 letterSpacing: '1px',
                 transition: 'all 0.3s ease',
                 padding: '0.5rem 1rem',
@@ -206,8 +228,13 @@ const Navigation = () => {
               }}
               whileHover={{ 
                 scale: 1.05,
-                background: 'rgba(255,255,255,0.1)',
-                color: '#FFFFFF'
+                background: 'rgba(255,255,255,0.1)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.textDecoration = 'underline';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.textDecoration = 'none';
               }}
               transition={{ duration: 0.2 }}
             >
@@ -216,39 +243,39 @@ const Navigation = () => {
 
             <motion.button
               onClick={() => {
-                setIsPageTransitioning(true);
-                document.body.classList.add('transitioning');
-                
-                setTimeout(() => {
-                  document.body.classList.add('blurred');
-                }, 50);
-                
-                setTimeout(() => {
-                  if (isOnBlogPage) {
-                    window.location.href = '/#science';
-                  } else {
-                    const scienceSection = document.getElementById('science');
-                    if (scienceSection) {
-                      scienceSection.scrollIntoView({ behavior: 'auto' });
-                    }
-                  }
+                  setIsPageTransitioning(true);
+                  document.body.classList.add('transitioning');
                   
                   setTimeout(() => {
-                    document.body.classList.remove('blurred');
-                    setIsPageTransitioning(false);
-                    document.body.classList.remove('transitioning');
-                  }, 800);
-                }, 800);
+                    document.body.classList.add('blurred');
+                  }, 50);
+                  
+                  setTimeout(() => {
+                    if (isOnBlogPage) {
+                      window.location.href = '/#science';
+                    } else {
+                      const scienceSection = document.getElementById('science');
+                      if (scienceSection) {
+                        scienceSection.scrollIntoView({ behavior: 'auto' });
+                      }
+                    }
+                    
+                    setTimeout(() => {
+                      document.body.classList.remove('blurred');
+                        setIsPageTransitioning(false);
+                        document.body.classList.remove('transitioning');
+                  }, 400);
+                }, 400);
               }}
               style={{
-                background: 'transparent',
-                border: 'none',
-                cursor: 'pointer',
+                  background: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
                 fontSize: '1rem',
                 fontWeight: '600',
                 color: '#1a1a1a',
-                textDecoration: 'none',
-                textTransform: 'uppercase',
+                  textDecoration: 'none',
+                  textTransform: 'uppercase',
                 letterSpacing: '1px',
                 transition: 'all 0.3s ease',
                 padding: '0.5rem 1rem',
@@ -256,8 +283,13 @@ const Navigation = () => {
               }}
               whileHover={{ 
                 scale: 1.05,
-                background: 'rgba(255,255,255,0.1)',
-                color: '#FFFFFF'
+                background: 'rgba(255,255,255,0.1)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.textDecoration = 'underline';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.textDecoration = 'none';
               }}
               transition={{ duration: 0.2 }}
             >
@@ -266,39 +298,39 @@ const Navigation = () => {
 
             <motion.button
               onClick={() => {
-                setIsPageTransitioning(true);
-                document.body.classList.add('transitioning');
-                
-                setTimeout(() => {
-                  document.body.classList.add('blurred');
-                }, 50);
-                
-                setTimeout(() => {
-                  if (isOnBlogPage) {
-                    window.location.href = '/#team';
-                  } else {
-                    const teamSection = document.getElementById('meet-the-team');
-                    if (teamSection) {
-                      teamSection.scrollIntoView({ behavior: 'auto' });
-                    }
-                  }
+                  setIsPageTransitioning(true);
+                  document.body.classList.add('transitioning');
                   
                   setTimeout(() => {
-                    document.body.classList.remove('blurred');
-                    setIsPageTransitioning(false);
-                    document.body.classList.remove('transitioning');
-                  }, 800);
-                }, 800);
+                    document.body.classList.add('blurred');
+                  }, 50);
+                  
+                  setTimeout(() => {
+                    if (isOnBlogPage) {
+                      window.location.href = '/#team';
+                    } else {
+                      const teamSection = document.getElementById('meet-the-team');
+                      if (teamSection) {
+                        teamSection.scrollIntoView({ behavior: 'auto' });
+                      }
+                    }
+                    
+                    setTimeout(() => {
+                      document.body.classList.remove('blurred');
+                        setIsPageTransitioning(false);
+                        document.body.classList.remove('transitioning');
+                  }, 400);
+                }, 400);
               }}
               style={{
-                background: 'transparent',
-                border: 'none',
-                cursor: 'pointer',
+                  background: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
                 fontSize: '1rem',
                 fontWeight: '600',
                 color: '#1a1a1a',
-                textDecoration: 'none',
-                textTransform: 'uppercase',
+                  textDecoration: 'none',
+                  textTransform: 'uppercase',
                 letterSpacing: '1px',
                 transition: 'all 0.3s ease',
                 padding: '0.5rem 1rem',
@@ -306,8 +338,13 @@ const Navigation = () => {
               }}
               whileHover={{ 
                 scale: 1.05,
-                background: 'rgba(255,255,255,0.1)',
-                color: '#FFFFFF'
+                background: 'rgba(255,255,255,0.1)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.textDecoration = 'underline';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.textDecoration = 'none';
               }}
               transition={{ duration: 0.2 }}
             >
@@ -316,16 +353,16 @@ const Navigation = () => {
 
             <motion.button
               onClick={() => {
-                setIsPageTransitioning(true);
-                document.body.classList.add('transitioning');
-                
-                setTimeout(() => {
-                  document.body.classList.add('blurred');
-                }, 50);
-                
-                setTimeout(() => {
-                  window.location.href = '/blog';
-                }, 800);
+                  setIsPageTransitioning(true);
+                  document.body.classList.add('transitioning');
+                  
+                  setTimeout(() => {
+                    document.body.classList.add('blurred');
+                  }, 50);
+                  
+                  setTimeout(() => {
+                    window.location.href = '/blog';
+                  }, 400);
               }}
               style={{
                 background: 'transparent',
@@ -343,13 +380,242 @@ const Navigation = () => {
               }}
               whileHover={{ 
                 scale: 1.05,
-                background: 'rgba(255,255,255,0.1)',
-                color: '#FFFFFF'
+                background: 'rgba(255,255,255,0.1)'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.textDecoration = 'underline';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.textDecoration = 'none';
               }}
               transition={{ duration: 0.2 }}
             >
               BLOG
             </motion.button>
+
+            <div style={{ position: 'relative' }} data-contact-dropdown>
+              <motion.button
+                onClick={() => setIsContactDropdownOpen(!isContactDropdownOpen)}
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  cursor: 'pointer',
+                  fontSize: '1rem',
+                  fontWeight: '600',
+                  color: '#1a1a1a',
+                  textDecoration: 'none',
+                  textTransform: 'uppercase',
+                  letterSpacing: '1px',
+                  transition: 'all 0.3s ease',
+                  padding: '0.5rem 1rem',
+                  borderRadius: '4px',
+                  outline: 'none'
+                }}
+                whileHover={{ 
+                  scale: 1.05,
+                  background: 'rgba(255,255,255,0.1)'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.textDecoration = 'underline';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.textDecoration = 'none';
+                }}
+                transition={{ duration: 0.2 }}
+              >
+                CONTACT US
+              </motion.button>
+
+              {/* Contact Dropdown Menu */}
+              <AnimatePresence>
+                {isContactDropdownOpen && (
+                  <motion.div
+                    initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                    transition={{ duration: 0.2 }}
+                    style={{
+                      position: 'absolute',
+                      top: '100%',
+                      right: '-2rem',
+                      background: '#F5E6D3',
+                      borderRadius: '8px',
+                      boxShadow: '0 8px 32px rgba(0,0,0,0.15), 0 4px 16px rgba(0,0,0,0.1)',
+                      padding: '1rem',
+                      minWidth: '200px',
+                      zIndex: 10001,
+                      marginTop: '0.5rem'
+                    }}
+                  >
+                    <div style={{ 
+                      display: 'grid', 
+                      gridTemplateColumns: 'auto 1fr',
+                      gap: '0.5rem 0.25rem',
+                      alignItems: 'center'
+                    }}>
+                      {/* Email */}
+                      <motion.div
+                        style={{
+                          width: '60px',
+                          height: '60px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          paddingLeft: '0.1rem',
+                        }}
+                      >
+                        <img 
+                          src="/images/Mail Icon .svg" 
+                          alt="Email" 
+                          style={{
+                            width: '60%',
+                            height: '60%',
+                            objectFit: 'contain'
+                          }}
+                        />
+                      </motion.div>
+                      <motion.a
+                        href="mailto:contact@neura.com"
+                        style={{
+                          padding: '0.5rem',
+                          borderRadius: '4px',
+                          textDecoration: 'none',
+                          color: '#1a1a1a',
+                          fontSize: '0.9rem',
+                          fontWeight: '700',
+                          transition: 'background 0.2s ease'
+                        }}
+                        whileHover={{ 
+                          background: 'rgba(255,255,255,0.2)'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.textDecoration = 'underline';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.textDecoration = 'none';
+                        }}
+                        onClick={() => setIsContactDropdownOpen(false)}
+                      >
+                        Email
+                      </motion.a>
+
+                      {/* Instagram */}
+                      <motion.div
+                        style={{
+                          width: '60px',
+                          height: '60px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          paddingRight: '2px',
+                        }}
+                      >
+                        <img 
+                          src="/images/InstaLogo.svg" 
+                          alt="Instagram" 
+                          style={{
+                            width: '70%',
+                            height: '70%',
+                            objectFit: 'contain'
+                          }}
+                        />
+                      </motion.div>
+                      <motion.div
+                        style={{
+                          padding: '0.5rem',
+                          borderRadius: '4px',
+                          color: '#666',
+                          fontSize: '0.9rem',
+                          fontWeight: '700'
+                        }}
+                      >
+                        Instagram <span style={{ fontSize: '0.7rem' }}>(Coming Soon)</span>
+                      </motion.div>
+
+                      {/* TikTok */}
+                      <motion.div
+                        style={{
+                          width: '50px',
+                          height: '50px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center'
+                        }}
+                      >
+                        <img 
+                          src="/images/Tiktok Logo.svg" 
+                          alt="TikTok" 
+                          style={{
+                            width: '70%',
+                            height: '70%',
+                            objectFit: 'contain'
+                          }}
+                        />
+                      </motion.div>
+                      <motion.div
+                        style={{
+                          padding: '0.5rem',
+                          borderRadius: '4px',
+                          color: '#666',
+                          fontSize: '0.9rem',
+                          fontWeight: '700'
+                        }}
+                      >
+                        TikTok <span style={{ fontSize: '0.7rem' }}>(Coming Soon)</span>
+                      </motion.div>
+
+                      {/* LinkedIn */}
+                      <motion.div
+                        style={{
+                          width: '50px',
+                          height: '50px',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          paddingLeft: '0.15rem'
+                        }}
+                      >
+                        <img 
+                          src="/images/LinkedIn.svg" 
+                          alt="LinkedIn" 
+                          style={{
+                            width: '70%',
+                            height: '70%',
+                            objectFit: 'contain'
+                          }}
+                        />
+                      </motion.div>
+                      <motion.a
+                        href="https://www.linkedin.com/company/neurasleep/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          padding: '0.5rem',
+                          borderRadius: '4px',
+                          textDecoration: 'none',
+                          color: '#1a1a1a',
+                          fontSize: '0.9rem',
+                          fontWeight: '700',
+                          transition: 'background 0.2s ease'
+                        }}
+                        whileHover={{ 
+                          background: 'rgba(255,255,255,0.2)'
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.textDecoration = 'underline';
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.textDecoration = 'none';
+                        }}
+                        onClick={() => setIsContactDropdownOpen(false)}
+                      >
+                        LinkedIn
+                      </motion.a>
+                    </div>
+              </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           </div>
         </div>
       </motion.nav>

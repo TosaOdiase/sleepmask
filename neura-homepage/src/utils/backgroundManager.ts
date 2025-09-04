@@ -4,35 +4,44 @@ export const BACKGROUND_COLORS = {
   LIGHT_BLUE: '#065787',
   NAVY_BLUE: '#0D3147',
   WHITE: '#ffffff',
-  BLACK: '#000000'
+  BLACK: '#000000',
+  // Gradient colors from the palette
+  GRADIENT_1: '#253F4A', // Darkest teal
+  GRADIENT_2: '#365563', // Dark teal
+  GRADIENT_3: '#446879', // Medium-dark teal
+  GRADIENT_4: '#537d90', // Medium teal
+  GRADIENT_5: '#608da2', // Medium-light blue
+  GRADIENT_6: '#779eb2', // Light blue
+  GRADIENT_7: '#8eb1c2', // Very light blue
+  GRADIENT_8: '#acc8d7'  // Lightest blue
 } as const;
 
-// Section background mapping - all sections now use static colors
+// Section background mapping - using gradient colors in proper sequence
 export const SECTION_BACKGROUNDS = {
-  'hero': BACKGROUND_COLORS.LIGHT_BLUE,
-  'intro': BACKGROUND_COLORS.LIGHT_BLUE,
-  'app': BACKGROUND_COLORS.NAVY_BLUE,
-  'app-extended': BACKGROUND_COLORS.NAVY_BLUE,
-  'app-statistics': BACKGROUND_COLORS.NAVY_BLUE,
-  'coming-soon': BACKGROUND_COLORS.NAVY_BLUE,
-  'science': BACKGROUND_COLORS.NAVY_BLUE,
-  'science-4-panel': BACKGROUND_COLORS.NAVY_BLUE,
-  'science-summary': BACKGROUND_COLORS.NAVY_BLUE,
-  'blog': BACKGROUND_COLORS.NAVY_BLUE,
-  'team': BACKGROUND_COLORS.NAVY_BLUE
+  'hero': BACKGROUND_COLORS.GRADIENT_1,
+  'intro': BACKGROUND_COLORS.GRADIENT_1,
+  'app': BACKGROUND_COLORS.GRADIENT_2,
+  'app-extended': BACKGROUND_COLORS.GRADIENT_3,
+  'app-statistics': BACKGROUND_COLORS.GRADIENT_7,
+  'coming-soon': BACKGROUND_COLORS.GRADIENT_8,
+  'science': BACKGROUND_COLORS.GRADIENT_1,
+  'science-4-panel': BACKGROUND_COLORS.GRADIENT_3,
+  'science-summary': BACKGROUND_COLORS.GRADIENT_5,
+  'blog': BACKGROUND_COLORS.GRADIENT_7,
+  'team': BACKGROUND_COLORS.GRADIENT_7
 } as const;
 
 // Component-specific background colors (for sections that have their own backgrounds)
 export const COMPONENT_BACKGROUNDS = {
-  'AppSection': BACKGROUND_COLORS.NAVY_BLUE,
-  'AppSectionExtended': BACKGROUND_COLORS.NAVY_BLUE,
-  'AppSectionStatistics': BACKGROUND_COLORS.NAVY_BLUE,
-  'ComingSoon': BACKGROUND_COLORS.NAVY_BLUE,
-  'Science': BACKGROUND_COLORS.NAVY_BLUE,
-  'Science4Panel': BACKGROUND_COLORS.NAVY_BLUE,
-  'ScienceSummaryPage': BACKGROUND_COLORS.NAVY_BLUE,
-  'Blog': BACKGROUND_COLORS.NAVY_BLUE,
-  'MeetTheTeam': BACKGROUND_COLORS.NAVY_BLUE
+  'AppSection': BACKGROUND_COLORS.GRADIENT_2,
+  'AppSectionExtended': BACKGROUND_COLORS.GRADIENT_5,
+  'AppSectionStatistics': BACKGROUND_COLORS.GRADIENT_7,
+  'ComingSoon': BACKGROUND_COLORS.GRADIENT_8,
+  'Science': BACKGROUND_COLORS.GRADIENT_1,
+  'Science4Panel': BACKGROUND_COLORS.GRADIENT_3,
+  'ScienceSummaryPage': BACKGROUND_COLORS.GRADIENT_5,
+  'Blog': BACKGROUND_COLORS.GRADIENT_7,
+  'MeetTheTeam': BACKGROUND_COLORS.GRADIENT_7
 } as const;
 
 // Background manager - simplified to just set the consistent static background
@@ -106,4 +115,4 @@ export class BackgroundManager {
 }
 
 // Export singleton instance
-export const backgroundManager = BackgroundManager.getInstance(); 
+export const backgroundManager = BackgroundManager.getInstance();

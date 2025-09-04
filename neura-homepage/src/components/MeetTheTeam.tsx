@@ -69,6 +69,68 @@ const MeetTheTeam: React.FC = () => {
     };
   }, []);
 
+  // Prevent scrolling past the Meet the Team component
+  useEffect(() => {
+    const preventScrollPastTeam = (e: WheelEvent) => {
+      const teamSection = document.getElementById('meet-the-team');
+      if (!teamSection) return;
+
+      const teamRect = teamSection.getBoundingClientRect();
+      const teamBottom = teamRect.bottom;
+      const currentScrollY = window.scrollY;
+      const maxScrollY = teamBottom + currentScrollY - window.innerHeight;
+      
+      // If we're at or past the bottom of the team section and trying to scroll down
+      if (currentScrollY >= maxScrollY && e.deltaY > 0) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+    };
+
+    const preventTouchScrollPastTeam = (e: TouchEvent) => {
+      const teamSection = document.getElementById('meet-the-team');
+      if (!teamSection) return;
+
+      const teamRect = teamSection.getBoundingClientRect();
+      const teamBottom = teamRect.bottom;
+      const currentScrollY = window.scrollY;
+      const maxScrollY = teamBottom + currentScrollY - window.innerHeight;
+      
+      // If we're at or past the bottom of the team section
+      if (currentScrollY >= maxScrollY) {
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      }
+    };
+
+    // Also prevent programmatic scrolling past the team section
+    const preventProgrammaticScroll = () => {
+      const teamSection = document.getElementById('meet-the-team');
+      if (!teamSection) return;
+
+      const teamRect = teamSection.getBoundingClientRect();
+      const teamBottom = teamRect.bottom;
+      const currentScrollY = window.scrollY;
+      const maxScrollY = teamBottom + currentScrollY - window.innerHeight;
+      
+      if (currentScrollY > maxScrollY) {
+        window.scrollTo(0, maxScrollY);
+      }
+    };
+
+    document.addEventListener('wheel', preventScrollPastTeam, { passive: false });
+    document.addEventListener('touchmove', preventTouchScrollPastTeam, { passive: false });
+    window.addEventListener('scroll', preventProgrammaticScroll, { passive: true });
+
+    return () => {
+      document.removeEventListener('wheel', preventScrollPastTeam);
+      document.removeEventListener('touchmove', preventTouchScrollPastTeam);
+      window.removeEventListener('scroll', preventProgrammaticScroll);
+    };
+  }, []);
+
   const currentMember = allTeamMembers[currentIndex];
 
   const getCurrentSection = () => {
@@ -115,7 +177,7 @@ const MeetTheTeam: React.FC = () => {
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "flex-start",
-        padding: "15vh 5rem 5vh 5rem"
+        padding: "12vh 5rem 20vh 5rem"
       }}
     >
       {/* Fixed Header */}
@@ -125,8 +187,8 @@ const MeetTheTeam: React.FC = () => {
         transition={{ duration: 0.8, ease: 'easeOut' }}
         style={{
           textAlign: "center",
-          marginBottom: "4rem",
-          marginTop: "2rem",
+          marginBottom: "3rem",
+          marginTop: "1rem",
           position: "relative",
           zIndex: 10
         }}

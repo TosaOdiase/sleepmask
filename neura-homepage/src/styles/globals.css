@@ -24,10 +24,10 @@ body, h1, h2, h3, h4, h5, h6, p, div, section, article, aside, nav, header, foot
   padding: 0.1rem 0.4rem !important;
 }
 
-/* Global background - navy blue to prevent white flash */
+/* Global background - transparent to let gradient show through */
 html, body {
-  background: #0D3147;
-  background-color: #0D3147;
+  background: #253F4A;
+  background-color: #253F4A;
   overflow-x: hidden;
   width: 100%;
   max-width: 100%;
@@ -238,71 +238,102 @@ html, body {
   text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
 }
 
-/* Section-specific backgrounds - exactly matching the original component backgrounds */
+/* Section-specific backgrounds - using gradient colors */
 
-/* Hero section background - gradient from navy to light blue */
+/* Hero section background - gradient to intro */
 .hero {
-  background: linear-gradient(180deg, #0D3147 0%, #065787 100%);
+  background: linear-gradient(to bottom, #253F4A, #253F4A);
 }
 
-/* Intro section background - light blue */
+/* Intro section background - gradient to app section */
 .intro-section {
-  background: #065787;
+  background: linear-gradient(to bottom, #253F4A, #365563);
 }
 
-/* Sleepmask section background - light blue */
+/* Sleepmask section background - gradient to app */
 .sleepmask-section {
-  background: #065787;
+  background: transparent;
 }
 
-/* App section background - gradient from light blue to navy */
+/* App section background - gradient to app extended */
 .app-section {
-  background: linear-gradient(180deg, #065787 0%, #0D3147 100%);
+  background: linear-gradient(to bottom, #365563, #446879);
 }
 
-/* App section extended background - navy blue */
+/* App section extended background - gradient to app statistics */
 .app-section-extended {
-  background: #0D3147;
+  background: linear-gradient(to bottom, #446879, #537d90);
 }
 
-/* App section statistics background - navy blue */
+/* App section statistics background - gradient to science */
 .app-section-statistics {
-  background: #0D3147;
+  background: linear-gradient(to bottom, #537d90, #779eb2);
 }
 
-/* Coming soon section background - navy blue */
+/* Coming soon section background - gradient */
 .coming-soon-section {
-  background: #0D3147;
+  background: linear-gradient(to bottom, #608da2, #779eb2);
 }
 
-/* Science section background - navy blue */
+/* Science section background - gradient to science 4 panel */
 .science-section {
-  background: #0D3147;
+  background: linear-gradient(to bottom, #779eb2, #8eb1c2);
 }
 
-/* Science 4 panel section background - navy blue */
+/* Science 4 panel section background - same as science summary (no gradient) */
 .science-4-panel-section {
-  background: #0D3147;
+  background: #8eb1c2;
 }
 
-/* Science summary page background - navy blue */
+/* Science summary page background - gradient to meet team */
 .science-summary-page-section {
-  background: #0D3147;
+  background: linear-gradient(to bottom, #8eb1c2, #acc8d7);
 }
 
-/* Blog section background - navy blue */
+/* Blog section background - darkest teal */
 .blog-section {
-  background: #0D3147;
+  background: #253F4A;
 }
 
-/* Team section background - light blue */
-.team-section {
-  background: #065787;
-}
-
-/* Meet the team section background - navy blue */
+/* Meet the team section background - very light blue */
 .meet-the-team-section {
-  background: #0D3147;
+  background: #acc8d7;
+}
+
+/* Spacer classes for gradient flow */
+.spacer-1 {
+  height: 200px;
+  background: #365563;
+}
+
+.spacer-2 {
+  height: 200px;
+  background: #446879;
+}
+
+.spacer-3 {
+  height: 200px;
+  background: #537d90;
+}
+
+.spacer-4 {
+  height: 200px;
+  background: #779eb2;
+}
+
+.spacer-5 {
+  height: 5px;
+  background: #8eb1c2;
+}
+
+.spacer-6 {
+  height: 200px;
+  background: #8eb1c2;
+}
+
+.spacer-7 {
+  height: 200px;
+  background: #acc8d7;
 }
 
 /* Animated Underlines for Science Component */

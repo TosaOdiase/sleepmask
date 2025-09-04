@@ -4,7 +4,6 @@ import IntroSection from '@/components/IntroSection';
 import AppSection from '@/components/AppSection';
 import AppSectionExtended from '@/components/AppSectionExtended';
 import AppSectionStatistics from '@/components/AppSectionStatistics';
-import ComingSoon from '@/components/ComingSoon';
 import Science from '@/components/Science';
 import Science4Panel from '@/components/science-4-panel';
 import ScienceSummaryPage from '@/components/science-summary-page';
@@ -13,12 +12,13 @@ import MeetTheTeam from '@/components/MeetTheTeam';
 
 import Navigation from '@/components/Navigation';
 import { useEffect } from 'react';
-import { backgroundManager, SECTION_BACKGROUNDS } from '@/utils/backgroundManager';
 
 export default function Home() {
   useEffect(() => {
     const introSection = document.getElementById('intro-section');
     const appSection = document.getElementById('app-section');
+    const scienceSection = document.getElementById('science');
+    const teamSection = document.getElementById('meet-the-team');
     
     if (!introSection) {
       console.log('Intro section not found');
@@ -29,10 +29,6 @@ export default function Home() {
       console.log('App section not found');
       return;
     }
-
-    // Register sections with the background manager
-    backgroundManager.registerSection('intro', introSection, SECTION_BACKGROUNDS.intro);
-    backgroundManager.registerSection('app', appSection, SECTION_BACKGROUNDS['app-extended']);
 
     // Check if we have a hash in the URL and scroll to the appropriate section
     if (window.location.hash) {
@@ -63,40 +59,41 @@ export default function Home() {
         window.history.replaceState(null, '', window.location.pathname);
       }, 100);
     }
-
-    return () => {
-      backgroundManager.unregisterSection('intro');
-      backgroundManager.unregisterSection('app');
-    };
   }, []);
 
   return (
     <>
       <Navigation />
       <Hero />
-      <section id="intro-section">
+      <section id="intro-section" className="intro-section">
         <IntroSection />
       </section>
-      <div style={{ height: "200px", background: "#065787" }}></div>
-      <section id="app-section">
+      <div className="spacer-1"></div>
+      <section id="app-section" className="app-section">
         <AppSection />
       </section>
-      <div style={{ height: "200px", background: "#0D3147" }}></div>
-      <AppSectionExtended />
-      <div style={{ height: "200px", background: "#0D3147" }}></div>
-      <AppSectionStatistics />
-      <div style={{ height: "200px", background: "#0D3147" }}></div>
-      <ComingSoon />
-      <div style={{ height: "200px", background: "#0D3147" }}></div>
-      <section id="science">
+      <div className="spacer-2"></div>
+      <div className="app-section-extended">
+        <AppSectionExtended />
+      </div>
+      <div className="spacer-3"></div>
+      <div className="app-section-statistics">
+        <AppSectionStatistics />
+      </div>
+      <div className="spacer-4"></div>
+      <section id="science" className="science-section">
         <Science />
       </section>
-      <div style={{ height: "5px", background: "#0D3147" }}></div>
-      <Science4Panel />
-      <div style={{ height: "200px", background: "#0D3147" }}></div>
-      <ScienceSummaryPage />
-       <div style={{ height: "200px", background: "#0D3147" }}></div> 
-      <section id="meet-the-team">
+      <div className="spacer-5"></div>
+      <div className="science-4-panel-section">
+        <Science4Panel />
+      </div>
+      <div className="spacer-6"></div>
+      <div className="science-summary-page-section">
+        <ScienceSummaryPage />
+      </div>
+      <div className="spacer-7"></div> 
+      <section id="meet-the-team" className="meet-the-team-section">
         <MeetTheTeam />
       </section>
     </>

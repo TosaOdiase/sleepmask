@@ -115,13 +115,13 @@ const IntroSection = () => {
                 onMouseEnter={() => setHoveredArea('left')}
                 onMouseLeave={() => setHoveredArea(null)}
                 style={{
-                  borderColor: "#0D3147",
-                  backgroundColor: "#0D3147",
+                  borderColor: "#365562",
+                  backgroundColor: "#365562",
                   width: "45px",
                   height: "45px",
                   transition: "all 0.2s ease",
                   boxShadow: "0 0 0 rgba(244, 228, 188, 0)",
-                  left: "4%",
+                  left: "3%",
                   top: "64%",
                   transform: "none"
                 }}
@@ -131,8 +131,8 @@ const IntroSection = () => {
                   e.currentTarget.style.boxShadow = "0 0 15px rgba(244, 228, 188, 0.6)";
                 }}
                 onMouseOut={(e) => {
-                  e.currentTarget.style.backgroundColor = "#0D3147";
-                  e.currentTarget.style.borderColor = "#0D3147";
+                  e.currentTarget.style.backgroundColor = "#365562";
+                  e.currentTarget.style.borderColor = "#365562";
                   e.currentTarget.style.boxShadow = "0 0 0 rgba(244, 228, 188, 0)";
                 }}
               />
@@ -143,14 +143,14 @@ const IntroSection = () => {
                 onMouseEnter={() => setHoveredArea('center')}
                 onMouseLeave={() => setHoveredArea(null)}
                 style={{
-                  borderColor: "#0D3147",
-                  backgroundColor: "#0D3147",
+                  borderColor: "#365562",
+                  backgroundColor: "#365562",
                   width: "45px",
                   height: "45px",
                   transition: "all 0.2s ease",
                   boxShadow: "0 0 0 rgba(244, 228, 188, 0)",
                   transform: "translate(-50%, -60%)",
-                  left: "52%",
+                  left: "51%",
                   top: "48%"
                 }}
                 onMouseOver={(e) => {
@@ -159,8 +159,8 @@ const IntroSection = () => {
                   e.currentTarget.style.boxShadow = "0 0 15px rgba(244, 228, 188, 0.6)";
                 }}
                 onMouseOut={(e) => {
-                  e.currentTarget.style.backgroundColor = "#0D3147";
-                  e.currentTarget.style.borderColor = "#0D3147";
+                  e.currentTarget.style.backgroundColor = "#365562";
+                  e.currentTarget.style.borderColor = "#365562";
                   e.currentTarget.style.boxShadow = "0 0 0 rgba(244, 228, 188, 0)";
                 }}
               />
@@ -171,14 +171,14 @@ const IntroSection = () => {
                 onMouseEnter={() => setHoveredArea('right')}
                 onMouseLeave={() => setHoveredArea(null)}
                 style={{
-                  borderColor: "#0D3147",
-                  backgroundColor: "#0D3147",
+                  borderColor: "#365562",
+                  backgroundColor: "#365562",
                   width: "45px",
                   height: "45px",
                   transition: "all 0.2s ease",
                   boxShadow: "0 0 0 rgba(244, 228, 188, 0)",
                   transform: "translateY(-50%)",
-                  right: "3%",
+                  right: "2%",
                   top: "67%"
                 }}
                 onMouseOver={(e) => {
@@ -187,8 +187,8 @@ const IntroSection = () => {
                   e.currentTarget.style.boxShadow = "0 0 15px rgba(244, 228, 188, 0.6)";
                 }}
                 onMouseOut={(e) => {
-                  e.currentTarget.style.backgroundColor = "#0D3147";
-                  e.currentTarget.style.borderColor = "#0D3147";
+                  e.currentTarget.style.backgroundColor = "#365562";
+                  e.currentTarget.style.borderColor = "#365562";
                   e.currentTarget.style.boxShadow = "0 0 0 rgba(244, 228, 188, 0)";
                 }}
               />
@@ -215,17 +215,18 @@ const IntroSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 1.2, delay: 0.8 }}
               style={{
-                fontSize: "3rem",
+                fontSize: "2.5rem",
                 lineHeight: "1.6",
                 color: "#F4E4BC",
-                maxWidth: "600px",
-                textAlign: "left",
+                maxWidth: "800px",
+                textAlign: "center",
                 position: "absolute",
-                top: "25%",
+                top: "15%",
+                left: "10%",
                 transform: "translateY(-50%)"
               }}
             >
-              Wake up feeling refreshed, not groggy.<br />Our mask wakes you at the <span style={{ color: "#ffffff", fontWeight: "bold" }}>perfect</span> moment.
+              Wake up feeling <span style={{ color: "#ffffff", fontWeight: "bold" }}>refreshed</span>, not groggy.<br /><br />Our mask wakes you at the <span style={{ color: "#ffffff", fontWeight: "bold" }}>perfect</span> moment.
             </motion.p>
           )}
 

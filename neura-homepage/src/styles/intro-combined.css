@@ -378,41 +378,29 @@ img.intro-eyemask-image {
   left: 15%;
   top: 50%;
   transform: translateY(-50%);
-  border-color: #D4AF37;
-  background: #D4AF37;
+  border-color: #365563;
+  background: #365563;
 }
 
 .intro-center-button {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  border-color: #000;
-  background: #000;
+  border-color: #365563;
+  background: #365563;
 }
 
 .intro-right-button {
   right: 15%;
   top: 50%;
   transform: translateY(-50%);
-  border-color: #E34234;
-  background: #E34234;
+  border-color: #365563;
+  background: #365563;
 }
 
 .intro-circular-button:hover {
   transform: scale(1.2);
   background: transparent;
-}
-
-.intro-left-button:hover {
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
-}
-
-.intro-center-button:hover {
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-}
-
-.intro-right-button:hover {
-  box-shadow: 0 0 15px rgba(227, 66, 52, 0.5);
 }
 
 /* Intro Hover Label Styles */

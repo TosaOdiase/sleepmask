@@ -117,7 +117,7 @@ const ScienceSummaryPage: React.FC = () => {
             textShadow: "1px 1px 2px rgba(0,0,0,0.1)"
           }}
         >
-          Neura doesn't just collect data -{" "}
+          Neura doesn't just collect data,{" "}
           <span style={{ color: "#ffffff", textShadow: "2px 2px 4px rgba(0,0,0,0.3)" }}>
             we analyze it in real time.
           </span>

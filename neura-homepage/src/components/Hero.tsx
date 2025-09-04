@@ -142,7 +142,7 @@ const Hero: React.FC = () => {
       <h1 className="video-text">
         <video
           ref={videoRef}
-          src="/videos/Blue Ink in Water 4k.mp4"
+          src="/videos/ink-ripple.mp4"
           muted
           playsInline
           className="video-mask"

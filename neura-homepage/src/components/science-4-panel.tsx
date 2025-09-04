@@ -1,6 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
-import { backgroundManager, COMPONENT_BACKGROUNDS } from '@/utils/backgroundManager';
 
 const Science4Panel: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -34,24 +33,6 @@ const Science4Panel: React.FC = () => {
   const SCROLL_STEPS_PER_SENSOR = 30; // 120 / 4 = 30 per section, divided into 18 + 12 buffer
   const scrollStep = 0.5; // Increased from 1 to 3 for more responsive reverse scrolling
 
-  useEffect(() => {
-    try {
-    if (containerRef.current) {
-      backgroundManager.registerSection('science-4-panel', containerRef.current, COMPONENT_BACKGROUNDS.Science4Panel);
-      }
-    } catch (error) {
-      console.warn('Error registering section:', error);
-      setHasError(true);
-    }
-
-    return () => {
-      try {
-      backgroundManager.unregisterSection('science-4-panel');
-      } catch (error) {
-        console.warn('Error unregistering section:', error);
-      }
-    };
-  }, []);
 
   // Handle horizontal scroll only when section is in view
   useEffect(() => {
@@ -328,7 +309,7 @@ const Science4Panel: React.FC = () => {
           alignItems: "center",
           justifyContent: "center",
           padding: "5vh 5rem",
-          backgroundColor: "#0D3147"
+          background: "transparent"
         }}
       >
         <h2 style={{ color: "#ffffff", fontSize: "3rem", marginBottom: "2rem" }}>
@@ -530,7 +511,7 @@ const Science4Panel: React.FC = () => {
               animate={{ opacity: sensorVisibilities[0], y: 0 }}
               transition={{ duration: 0.2, delay: 0.15 }}
               style={{
-                color: "#ccc",
+                color: "#F5E6D3",
                 fontSize: "0.9rem",
                 lineHeight: "1.4"
               }}
@@ -593,7 +574,7 @@ const Science4Panel: React.FC = () => {
               animate={{ opacity: sensorVisibilities[1], y: 0 }}
               transition={{ duration: 0.2, delay: 0.2 }}
               style={{
-                color: "#ccc",
+                color: "#F5E6D3",
                 fontSize: "0.9rem",
                 lineHeight: "1.4"
               }}
@@ -656,7 +637,7 @@ const Science4Panel: React.FC = () => {
               animate={{ opacity: sensorVisibilities[2], y: 0 }}
               transition={{ duration: 0.2, delay: 0.25 }}
               style={{
-                color: "#ccc",
+                color: "#F5E6D3",
                 fontSize: "0.9rem",
                 lineHeight: "1.4"
               }}
@@ -719,7 +700,7 @@ const Science4Panel: React.FC = () => {
               animate={{ opacity: sensorVisibilities[3], y: 0 }}
               transition={{ duration: 0.2, delay: 0.3 }}
               style={{
-                color: "#ccc",
+                color: "#F5E6D3",
                 fontSize: "0.9rem",
                 lineHeight: "1.4"
               }}
